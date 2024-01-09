@@ -1,0 +1,90 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    .centered-container {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background-color: #fff; 
+        padding: 20px;
+        border: 2px solid #333; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    }
+
+    p {
+        color: #333; 
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    submit-box {
+        background-color: #ffc0cb;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        line-height: 1.5;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Bun venit la RIZZ Courses!</h1>
+
+   <div>
+       <a>Bun venit pe site-ul nostru. Pe RIZZ Courses veti gasi cursuri predate de profesionisti.</a> <br />
+       <a>Iata ce iti oferi:
+       </a>
+   </div>
+
+    <div class="centered-container">
+        <p>
+            Asadar, vrei sa te faci programator? <br />
+            Îți punem la dispoziție cele mai bune resurse, pregătire specializată, <br /> 
+            cerințele din piața reală pentru a ajunge la potențialul tău maxim  <br />
+            și pentru a fi foarte aproape de o carieră de programator. <br />
+        </p>
+    </div>
+
+    <div class="submit-box">
+        <h2>Inscriete acum!</h2>
+        <span> Trimite acest formular pentru a te inscrie la unul dintre modulele disponibile in acest moment! </span> <br>
+
+        <form action="submit.php" method="post">
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="input-1" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="input-1" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="input-1" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="input-1" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="input-1" name="message" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="country">Modulul Dorit</label>
+                <input type="text" id="input-1" name="module">
+            </div>
+
+            <br>
+            <button class="custom-button" type="submit">Submit</button> <br>
+        </form>
+    </div>
+
+</div>

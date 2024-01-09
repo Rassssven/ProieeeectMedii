@@ -1,0 +1,104 @@
+﻿@page
+@model PrMediii.Pages.Modules.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Rizz Courses</h1>
+
+<div>
+    Ne angajăm să luăm parte la pregătirea teoretică și practică a generațiilor pentru a fi în pas cu progresul tehnologic. <br />
+    Ajutăm cursanții să înțeleagă cum funcționează un calculator, ce rulează în spatele unui site web, cum a fost făcut Facebook sau Instagram. <br />
+    Am dezvoltat pentru tine o platformă de învățare care îmbină elemente de joc și de studiu, pentru a-ți face procesul mult mai plăcut.<br />
+</div>
+    <br />
+
+    <h3>Index</h3>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Cautati un curs dupa Titlu / Trainer:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.TitleSort">
+                @Html.DisplayNameFor(model => model.Module[0].Title)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Module[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Module[0].Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Module[0].PublishingDate)
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.TrainerSort">
+                @Html.DisplayNameFor(model => model.Module[0].Trainer.TrainerName)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Module[0].CourseCategories)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ModuleD.Modules) {
+        
+        string selectedRow = "";
+            if (item.ID == Model.ModuleID)
+            {
+                selectedRow = "table-success";
+            }
+
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trainer.TrainerName)
+            </td>
+
+                <td>
+                    @{
+                        foreach (var category in item.CourseCategories)
+                        {
+                            @category.Course.ID @: @category.Course.CourseName <br/>
+                        }
+                    }
+                </td>
+                 
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

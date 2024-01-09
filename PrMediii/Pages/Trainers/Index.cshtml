@@ -1,0 +1,79 @@
+﻿@page "{id:int?}"
+@model PrMediii.Pages.Trainers.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Trainer[0].TrainerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trainer[0].TrnCourse)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TrainerData.Trainers)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.TrainerID)
+            {
+                selectedRow = "table-success";
+            }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrnCourse)
+            </td>
+            <td>
+                <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@if (Model.TrainerData.Modules != null)
+{
+    <h3>Cursurile la care acest trainer preda</h3>
+    <table class="table">
+
+        @foreach (var item in Model.TrainerData.Trainers)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.TrainerID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+
+                <td>
+                    @{
+                        foreach (var b in item.Modules)
+                        {
+
+                            @b.Title @: @b.Trainer.TrainerName
+
+                            <br />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}

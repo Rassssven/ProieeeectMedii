@@ -1,0 +1,45 @@
+﻿@page
+@model PrMediii.Pages.StudentGroupes.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>StudentGroups</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StudentGroups.ID" />
+            <div class="form-group">
+                <label asp-for="StudentGroups.StudentID" class="control-label"></label>
+                <select asp-for="StudentGroups.StudentID" class="form-control" asp-items="ViewBag.StudentID"></select>
+                <span asp-validation-for="StudentGroups.StudentID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentGroups.ModuleID" class="control-label"></label>
+                <select asp-for="StudentGroups.ModuleID" class="form-control" asp-items="ViewBag.ModuleID"></select>
+                <span asp-validation-for="StudentGroups.ModuleID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentGroups.CourseStart" class="control-label"></label>
+                <input asp-for="StudentGroups.CourseStart" class="form-control" />
+                <span asp-validation-for="StudentGroups.CourseStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
